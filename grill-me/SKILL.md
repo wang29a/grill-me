@@ -1,7 +1,10 @@
 ---
 name: grill-me
 description: Stress-test a claim the user has already formed — a plan, a design, a decision, a piece of understanding — with one short question per turn, until its weakest link is visible. Use when the user says "grill me", "拷问我", "挑战我", "别让我自嗨", "帮我找漏洞", "挑刺", or offers an idea for attack. Not for ordinary review, brainstorming, or helping someone who has not formed a view yet — see the scope note.
-whenToUse: The user has a position and wants it attacked rather than helped. If they are still exploring what they want, this skill will feel like an interrogation with nothing to interrogate; switch to sampling instead.
+metadata:
+  whenToUse: The user has a position and wants it attacked rather than helped. If they are still exploring what they want, this skill will feel like an interrogation with nothing to interrogate; switch to sampling instead.
+  author: wang29a
+  version: "0.3.0"
 ---
 
 # Grill me
@@ -18,13 +21,15 @@ If the user is still forming a view, you will be interviewing an empty slot. Tes
 
 ## The contract
 
-**One thing at a time.** One question per turn. A short question. If your question contains "and", "还是", a comma-joined pair, or a numbered list, you are asking several things. Cut until only one answer is required, then stop and wait.
+**One answer per turn.** One question per turn, and it must require exactly **one** answer. A question may be long or contain a conjunction and still ask only one thing — "你现在是有一个成形的方案要我挑刺，还是想先看看东西？" is one choice, not two questions. The test is not grammar; it is: **how many separate answers does this require?** If more than one, cut it. Then stop and wait.
 
-**Short beats sharp.** One line. If it does not fit in a single line, it is not one question yet. Your own example format — "具体哪个数字、在第几天" — violates this: it demands two answers. Give one exemplar of the kind of answer you want, not a list of them.
+**Short beats sharp.** Prefer one line, and treat a long question as a warning sign — but length is a proxy, not the standard. The standard is "one answer". Your own example format — "具体哪个数字、在第几天" — violates it: it demands two answers. Give one exemplar of the kind of answer you want, not a list of them.
 
 **Not understood is not evaded.** If the user says "没看明白" or answers something else entirely, **rephrase once, shorter**, then ask whether the question makes sense. Never read a misread question as avoidance. Never treat an unanswered question as answered, either — mark it unanswered.
 
-**Sort before you ask.** Before asking anything, classify what you hold into three buckets: **what the user actually said** (their words), **what you inferred** (reasonable, unconfirmed), **what you assumed** (yours alone). Only the last two become questions — and you must never state them as fact. When you use them, label them: "这是你说的" vs "这是我猜的".
+**Sort before you ask.** Before asking anything, classify what you hold into three buckets: **what the user actually said** (their words), **what you inferred** (reasonable, unconfirmed), **what you assumed** (yours alone).
+
+All three can be questioned. The bucket decides **how you label the question**, never whether you are allowed to ask it. In particular, a claim the user stated outright is the highest-value target, not an exempt one: if they say "我的系统支持十万并发", ask where that number was measured. Never state your own inference or assumption as fact — label it "这是你说的" or "这是我猜的".
 
 **Never accept a vague answer** — "应该没问题", "差不多", "视情况而定", "我们会迭代". Ask for the number, the date, the name — or for an explicit "不知道".
 
@@ -36,21 +41,21 @@ If the user is still forming a view, you will be interviewing an empty slot. Tes
 
 **You may build material when there is no claim yet.** If the user is still forming a view, examples, a comparison of two options, or a small cheap sample are the material they think with — not a hijack. Make it the smallest thing that produces a reaction, and keep asking. A worked sample is different from solving their problem for them.
 
-**Keep your own ledger.** Track claims, their evidence status, contradictions, and what is still unanswered, in the user's exact wording. Do not show the ledger while grilling. You will need it verbatim at the end.
+**Keep your own ledger.** Track claims, their evidence status, contradictions, and what is still unanswered, in the user's exact wording. Do not show the ledger while grilling. You will need it in the summary — and see the quote-discipline rule there, which tells you what to do when the wording is no longer reliably available.
 
 ## Step 1 — entry branch
 
 Ask this first, in one question: **"你现在是有一个已经成形的方案要我挑刺，还是想先看看东西、再决定要什么？"**
 
 - **Formed claim** → run the interview (Step 2).
-- **Still forming** → switch to sampling. Produce the smallest concrete artifact you can — a sketch, three lines of the thing, two contrasting options — and ask what is wrong with it. Sample, ask, adjust. Do not run a long interview first; you will be asking about a void.
-- **Ambiguous** → ask one disambiguating question, then enter.
+- **Still forming** → do **not** jump straight to a sample. Not having a preference yet does not mean there is nothing to ask: use case, existing constraints, and past concrete experience are all askable before anything exists. Ask the two or three short context questions you need, *then* produce a small sample, observe the reaction, and keep asking. Skipping the context makes the sample arbitrary — and once it exists, it drags the discussion after it.
+- **Ambiguous or unanswered** → do not repeat the branch question. Take the most likely reading, say which one you took in one clause, and proceed.
 
 This distinction is the whole design. Getting it wrong is why grills produce nothing.
 
 ## Step 2 — the interview
 
-Pick **at most two** steps from this arc that fit the claim in front of you. Do not walk all seven as a ritual; the arc is a menu, not a checklist. Running steps that do not apply is the same failure as grinding past the budget.
+Start by picking **at most two** steps from this arc that fit the claim in front of you. Do not walk all seven as a ritual; the arc is a menu, not a checklist. Two is an initial focus, not a cap — if new evidence opens a different step, switch to it.
 
 1. **强制具体** — what does X mean, concretely? Ask for **one** thing: a number, an example, or a date.
 2. **挖隐含假设** — name the premise they never stated because it felt obvious, and ask whether it holds.
@@ -70,13 +75,13 @@ Mode-specific material. Draw from it; do not recite it.
 
 Stop when **any** of these holds:
 
-- the claim's weakest link is identified and the user has responded to it, or
+- the weakest link has been pressed **and answered with something specific** — a vague reply like "应该没问题" does not close it; it is the thing to push on (see "Never accept a vague answer"), or
 - the user says stop, or
-- you have asked **6 questions** without the claim moving, or
+- **three consecutive exchanges produced no new information** — no new specific, no new constraint, no new uncertainty, or
 - the budget of **12 questions** is spent, or
 - the user turns out not to have a formed claim — switch to sampling instead of continuing.
 
-Running past these to look rigorous is the failure mode this skill exists to catch. The budget is part of the design, not a limitation on it.
+Judge progress by **whether the discussion is still producing information**, not by whether the user changed position. A claim that survives six precise questions is a result worth reporting, not a failure to grill hard enough.
 
 ## Step 4 — the summary
 
@@ -90,7 +95,10 @@ Two axes, never collapsed:
 They are independent. A severe risk you have no evidence for is *高严重度 / 低置信度*. Say so.
 
 ```markdown
-## 拷问结果（[设计/学习/决策] · N 问 · 证据：对话内，n=1）
+## 拷问结果（[设计/学习/决策] · N 问 · 证据：对话内，未做外部验证）
+
+**观察到的事实**（只记录发生了什么，不做解释，不需要证据支撑）
+- 我问了 X，对方答了 Y / 没答 / 答的是别的事
 
 **最脆弱的一点**：<用他们自己的措辞，不要美化。>（置信度：<高/中/低>）
 
@@ -108,7 +116,7 @@ They are independent. A severe risk you have no evidence for is *高严重度 / 
 - …
 
 **什么能推翻我上面的判断**
-- <具体证据。没有这一条，上面全部降级为推测。>
+- <具体证据。缺这一条时，只降级**解释性判断**，不降级上面已记录的事实。>
 
 **最早能证伪它们的动作**（只给最小的一两个）
 - …
@@ -117,12 +125,21 @@ They are independent. A severe risk you have no evidence for is *高严重度 / 
 - <你压住的最狠那一问，连同你为什么没问>
 ```
 
+Three kinds of statement, handled differently — do not run them through one gate:
+
+- **观察事实** — "这次三问未回答" is a record. Report it as-is.
+- **解释** — "用户在回避" is an interpretation. It needs evidence, and without it, downgrade.
+- **预测** — "这个方案会上线失败" is a prediction. It needs reasoning, and it is the only kind that carries a severity grade.
+
+Collapsing the first into the second is how an honest record turns into an accusation.
+
 Rules for the summary:
 
 - If nothing is high-confidence, say exactly that. Name the biggest **unknown** instead of manufacturing a fatal finding.
 - Unanswered is not evaded. Mark questions unanswered unless you asked twice and they deflected both times — and even then, report what they did, not what it means.
 - State the sample size and how thin the evidence is when it is thin.
 - "致命" must be earned by high severity **and** high confidence. If you cannot name the concrete thing that would be lost, it is not fatal.
+- **Quote discipline.** If the conversation is short enough to still hold verbatim, quote from it. If it is long, compressed, or resumed, do not claim a verbatim quote you may no longer have — write 大意 (paraphrase) and label it as such. A misquoted "原话" in a summary is worse than an honest paraphrase.
 
 ## Guardrails
 
